@@ -4,7 +4,7 @@ const app = express()
 const {bots, playerRecord} = require('./data')
 const {shuffleArray} = require('./utils')
 //including cors here for now
-const cors = requre('cors');
+const cors = require('cors');
 app.use(cors());
 
 app.use(express.json())
