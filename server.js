@@ -7,9 +7,20 @@ const {shuffleArray} = require('./utils')
 //including cors here for now
 const cors = require('cors');
 app.use(cors());
-//
+
 
 app.use(express.json())
+
+// include and initialize the rollbar library with your access token
+var Rollbar = require('rollbar')
+var rollbar = new Rollbar({
+  accessToken: '24b039f002ec4b719121a1f147f916d2',
+  captureUncaught: true,
+  captureUnhandledRejections: true,
+})
+
+// record a generic message and send it to Rollbar
+rollbar.log('Hello world!')
 
 //middleware setup
 app.get('/js', (req,res) => {
@@ -22,6 +33,7 @@ app.get('/styles', (req,res) => {
 app.get('/', (req,res) => {
     res.sendFile(path.join(__dirname, './public/index.html'))
 })
+
 
 
 app.get('/api/robots', (req, res) => {
